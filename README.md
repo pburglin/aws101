@@ -31,7 +31,7 @@ git config --global user.email youremail@example.com
 
 6. A SSH client and your very own unique keys
 
-   * Macs:
+  * Macs:
 Macs have Terminal installed OOB; Many developers prefer iTerm2:
 ```
 # install homebrew
@@ -39,12 +39,12 @@ ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
 brew cask install iterm2
 ```
 
-   * Windows:
+  * Windows:
 Windows users should download and install **Putty** SSH client from [here](http://www.putty.org). The main package comes bundled with **PuTTYGen** (use this to generate your keys) and **pscp** (use this to copy files over SSH).
 
 Create your SSH keys:
 
-Mac / Linux:
+  * Mac / Linux:
 ```
 ssh-keygen -t rsa
 
@@ -66,7 +66,7 @@ The key's randomart image is:
 +-----------------+
 ```
 
-Windows: use PuTTYGen to generate your keys
+  * Windows: use PuTTYGen to generate your keys
 
 More info on setting up your keys: https://help.github.com/articles/connecting-to-github-with-ssh/ and https://docs.joyent.com/public-cloud/getting-started/ssh-keys/generating-an-ssh-key-manually/manually-generating-your-ssh-key-in-mac-os-x
 
