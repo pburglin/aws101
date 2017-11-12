@@ -419,18 +419,20 @@ Under Security Credentials setup:
 * SSH keys for AWS CodeCommit
 * HTTPS Git credentials for AWS CodeCommit
 
-Go to Service / CodeStar
-Click "Start a Project"
-Select the HTML 5 template
-Give it a unique project name. e.g. 20171112pburglin
-Click Next, then Create Project, make sure to select your key and go get a coffee - it might take a minute to prepare everything.
+Go to Service / CodeStar, then:
+* Click "Start a Project"
+* Select the "HTML 5" application template
+* Give it a unique project name. e.g. 20171112pburglin
+* Click Next, then Create Project, make sure to select your SSH key and go get a coffee - it might take a minute to prepare everything.
 
-What is a CI/CD pipeline?
+Couple questions while our CodeStar environment is getting provisioned:
+* What is a CI/CD pipeline?
+* What is In Place vs B/G deployment, and their pros and cons?
 
-Under Application endpoints, try the URL
+Under Application endpoints, try the URL to check out what you get from this template.
 
-New let's clone this repo and push some changes:
-* Click Connect tools
+New let's clone this repository and push some changes:
+* Click "Connect tools"
 * At the bottom, copy the Clone repository URL
 * Clone it as a local repository:
 ```
@@ -447,7 +449,7 @@ appspec.yml <-- automate EC2 instance setup
 webpage	<-- app static files go here
 ```
 
-* Replace the template files with our TodoMVC app:
+* Replace the original template files with our TodoMVC app:
 ```
 rm -rf /tmp/20171112pburglin/webpage/*
 cp -r /tmp/todomvc/examples/angular2/* /tmp/20171112pburglin/webpage
