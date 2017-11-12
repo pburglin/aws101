@@ -3,7 +3,7 @@ This course was designed to help learners get started with AWS. It includes deta
 
 # Pre-reqs
 
-1. Create a free AWS Account:
+1. Create a free AWS Account
    * Go to the [AWS console](https://aws.amazon.com) page
    * Get familiar with the details under "AWS Free Tier Details"
    * Click the "Create a Free Account" button and follow the forms to create your account
@@ -11,10 +11,19 @@ This course was designed to help learners get started with AWS. It includes deta
 NOTE: Concerned with unexpected bills for usage above the free tier? If you are careful this is typically not a problem, but you can always consider using a reloadable prepaid card instead of an actual credit card.
 
 2. AWS CLI
+   * Follow the instructions [here](http://docs.aws.amazon.com/cli/latest/userguide/installing.html) to install the AWS CLI and to include it in your command line path.
 
 3. Java Development Kit 8
 
 4. Git
+   * Check if your system already has a Git client installed; If not, follow the instructions [here](https://git-scm.com/downloads) to install it.
+
+NOTE: Is this your first time using Git? Set it up with your information:
+
+```
+git config --global user.name "Your Name Here"
+git config --global user.email youremail@example.com
+```
 
 5. SourceTree (optional)
 
