@@ -135,49 +135,73 @@ What is it? A development platform to generate, develop and deploy Spring Boot +
 
 Let's build our sample BookMart app locally, and review key aspects of the app:
 
-### Let's create our BookMart app
+### Let's create our local Git repo and Bookmart app
 
 ```
 mkdir -p /tmp/bookmart
 cd /tmp/bookmart
+
+# Create local Git repository with initial project
+git init
+git add .
+git status
+
+# nothing to commit (create/copy files and use "git add" to track)
+```
+
+```
 jhipster
 ```
 
 Review each question presented by JHipster, follow the prompts with default values and override only these options:
-1. Enable Search and WebSockets;
-2. Pick English as the app's main language, Spanish as an additional language;
-
-### Create local Git repository with initial project
-```
-git init
-git add .
-git status
-git config --global user.email "pedro.burglin@gmail.com"
-git config --global user.name "Pedro Burglin"
-git -m "initial commit of bookmart"
-```
+1. Enable **Search engine using Elasticsearch**;
+2. Pick **English** as the app's main language, **Spanish** as an additional language;
 
 ### Let's review what we have now:
 ```
 ./mvnw clean test
-
-./mvnw
+...
+[INFO] Analyzed bundle 'Bookmart' with 70 classes
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 01:04 min
+[INFO] Finished at: 2017-11-12T12:46:11-05:00
+[INFO] Final Memory: 54M/384M
+[INFO] ------------------------------------------------------------------------
 ```
 
-[Local Bookmart](http://localhost:8080)
+```
+./mvnw
+...
+----------------------------------------------------------
+	Application 'bookmart' is running! Access URLs:
+	Local: 		http://localhost:8080
+	External: 	http://192.168.86.218:8080
+	Profile(s): 	[swagger, dev]
+----------------------------------------------------------
+```
+
+[Local Bookmart - Without Hot Reload](http://localhost:8080)
+
+* Sample user accounts:
+admin/admin
+user/user
 
 ### Hot reload
 ```
 # on a 2nd terminal:
+cd /tmp/bookmart
 yarn start
 ```
 
-[Local Bookmart](http://localhost:9000)
+[Local Bookmart - With Hot Reload](http://localhost:9000)
 
 ```
 cd /tmp/bookmart
 atom .
 ```
+Let's make few changes to src/main/webapp/app/home/home.component.html and check out the browser tab
 
 ### Create Author data entity:
 
@@ -190,7 +214,10 @@ Create the following fields:
  * Type: String
  * Validation: Yes
   * Select Required
+ * No relationship
  * No DTO
+ * No separate service class
+ * Yes, with infinite scroll
 
 ### Commit code changes to local Git repo
 ```
