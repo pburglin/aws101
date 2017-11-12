@@ -71,8 +71,6 @@ More info on setting up your keys: https://help.github.com/articles/connecting-t
 7. [SourceTree](https://www.sourcetreeapp.com) (optional):
 SourceTree is a graphical interface for Git. It is especialy helpful to visualize changes in filesets and repositories with multiple branches.
 
-8. 
-
 ## Validating pre-reqs:
 ```
 aws --version
