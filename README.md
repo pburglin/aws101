@@ -168,7 +168,7 @@ Click Permissions / Bucket policy, and enter the policy below (change the "pburg
 
 Now let's copy the static files over to our S3 bucket:
 ```
-cd /tmp/todomvc
+cd /tmp/todomvc/examples/angular2
 aws s3 cp . s3://pburglin20171112/ --recursive
 ```
 
