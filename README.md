@@ -38,7 +38,7 @@ brew cask install iterm2
 ```
 
    * Windows:
-Windows users should download and install Putty from [here](http://www.putty.org). The main package comes bundled with PuTTYGen, you will use it to generate your keys.
+Windows users should download and install **Putty** SSH client from [here](http://www.putty.org). The main package comes bundled with **PuTTYGen** (use this to generate your keys) and **pscp** (use this to copy files over SSH).
 
 Create your SSH keys:
 
@@ -71,6 +71,7 @@ More info on setting up your keys: https://help.github.com/articles/connecting-t
 7. [SourceTree](https://www.sourcetreeapp.com) (optional):
 SourceTree is a graphical interface for Git. It is especialy helpful to visualize changes in filesets and repositories with multiple branches.
 
+8. 
 
 ## Validating pre-reqs:
 ```
@@ -87,8 +88,17 @@ git version 2.13.6 (Apple Git-96)
 # [TodoMVC](http://todomvc.com)
 What is it? A frontend-only ToDo app implemented with in most of the popular JavaScript frameworks of today.
 
+Let's deploy our own TodoMVC with S3 - look, no servers!
+
 # [JHipster](http://www.jhipster.tech)
 What is it? A development platform to generate, develop and deploy Spring Boot + Angular Web applications and Spring microservices.
+
+Let's build our sample BookMart app locally, and review key aspects of the app.
+
+Now let's deploy it in our AWS EC2 instance:
+Checkout from Git repo
+Upload package
+
 
 # [AWS CodeStar](https://aws.amazon.com/codestar/)
 What is it? A unified user interface to quick-start and manage your software development activities in a single place.
