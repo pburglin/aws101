@@ -134,29 +134,70 @@ Go to the [AWS console](https://console.aws.amazon.com) page
 In the top menu, click Services / EC2
 In the top right, confirm you have selected the "N. Virginia" region
 Click "Launch Instance"
-Pick the latest Amazon Linux AMI
+Pick the latest Ubuntu Server 16.04 Linux AMI
 Click the "Next" buttons, and review each screen - do not change anything
 Under "Configure Security Group": keep the default rule for SSH and add new rules for HTTP and HTTPS
-If this is your first time, you will need to setup keys with AWS
+If this is your first time creating EC2 instances, you will need to setup keys with AWS - just upload the public key (~/.ssh/id_rsa.pub) you created earlier.
 
+As the EC2 instance starts up, in the EC2 Instances screen, with the new instance selected, take note of these 2 fields:
+* Public DNS (IPv4) - on my case, it was ec2-34-227-26-150.compute-1.amazonaws.com
+* IPv4 Public IP - on my case, it was 34.227.26.150
+
+NOTE: Your public DNS and IP will be different than the ones I got here. So for the next steps make sure to replace these values in the instructions below with the ones you got from AWS.
+
+Let's try connecting to our new EC2 instance:
 ```
-pedroburglin$ ssh -i ~/.ssh/id_rsa ec2-user@52.201.205.213
-Last login: Sun Nov 12 19:01:09 2017 from 72.83.64.233
+ssh -i ~/.ssh/id_rsa ubuntu@34.227.26.150
 
-       __|  __|_  )
-       _|  (     /   Amazon Linux AMI
-      ___|\___|___|
+Welcome to Ubuntu 16.04.3 LTS (GNU/Linux 4.4.0-1038-aws x86_64)
 
-https://aws.amazon.com/amazon-linux-ami/2017.09-release-notes/
-[ec2-user@ip-172-31-76-59 ~]$
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+  Get cloud support with Ubuntu Advantage Cloud Guest:
+    http://www.ubuntu.com/business/services/cloud
+
+0 packages can be updated.
+0 updates are security updates.
+
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
+
+To run a command as administrator (user "root"), use "sudo <command>".
+See "man sudo_root" for details.
+
+ubuntu@ip-172-31-76-103:~$
 ```
 
+NOTE: It might take couple minutes for the EC2 instance to startup completely.
+
+Let's install some dependencies in our EC2 instance:
+```
+sudo apt-get update
+sudo apt-get install -y git
+sudo apt-get install -y nodejs
+sudo apt-get install -y npm
+sudo apt-get install -y nginx
+sudo apt-get install -y openjdk-8-jdk
+```
+
+NOTE: If everything worked properly, we should have 
+
+---
 
 # [TodoMVC](http://todomvc.com)
 What is it? A frontend-only ToDo app implemented with in most of the popular JavaScript frameworks of today.
 
 Let's deploy our own TodoMVC with S3 - look, no servers!
 
+---
 
 # [JHipster](http://www.jhipster.tech)
 What is it? A development platform to generate, develop and deploy Spring Boot + Angular Web applications and Spring microservices.
@@ -256,6 +297,8 @@ git status
 git commit -m "Added Author entity"
 ```
 
+### Review code changes with SourceTree
+
 ### Create the Book data entity:
 
 ```
@@ -291,12 +334,51 @@ git commit -m "Added Book entity"
 ```
 
 ### Now let's deploy it in our AWS EC2 instance:
+
+There are many ways to have our app deployed in AWS. For this part we are 
+
+
 Here we will explore two ways to deploy our app:
 
 #### From the EC2 instance, checkout from Git repo, build and run
 
-#### From your workstation, do a local build and upload binary package to EC2 instance
 
+From your workstation, do a local build and upload binary package to EC2 instance
+
+```
+# build the application binary:
+./mvnw package
+
+ls -la target/*.war
+-rwxr--r--  1 pedroburglin  wheel  78564956 Nov 12 14:30 target/bookmart-0.0.1-SNAPSHOT.war
+```
+
+```
+# upload and start the app from our EC2 instance:
+scp -i ~/.ssh/id_rsa target/bookmart-0.0.1-SNAPSHOT.war ubuntu@34.227.26.150:~/
+
+ssh -i ~/.ssh/id_rsa ubuntu@34.227.26.150
+
+java -jar bookmart-0.0.1-SNAPSHOT.war
+...
+----------------------------------------------------------
+	Application 'bookmart' is running! Access URLs:
+	Local: 		http://localhost:8080
+	External: 	http://172.31.76.103:8080
+	Profile(s): 	[swagger, dev]
+----------------------------------------------------------
+```
+
+Now let's try our Bookmart app running from AWS: in your browser go to http://34.227.26.150:8080/ or http://ec2-34-227-26-150.compute-1.amazonaws.com:8080/
+
+If everything worked properly you should see Bookmart's login page!
+
+NOTE: If you want the app to continue running after you close the SSH terminal, you can start it with this command below:
+```
+nohup java -jar bookmart-0.0.1-SNAPSHOT.war > nohup.out &
+```
+
+---
 
 # [AWS CodeStar](https://aws.amazon.com/codestar/)
 What is it? A unified user interface to quick-start and manage your software development activities in a single place.
