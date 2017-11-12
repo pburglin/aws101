@@ -25,9 +25,51 @@ git config --global user.name "Your Name Here"
 git config --global user.email youremail@example.com
 ```
 
-5. SourceTree (optional)
+5. A good text editor, such as Atom, Visual Studio Code, Notepad++ etc 
 
-6. A good text editor, such as Atom, Visual Studio Code, Notepad++ etc 
+6. A SSH client and your very own unique keys
+
+   * Macs:
+Macs have Terminal installed OOB; Many developers prefer iTerm2:
+```
+# install homebrew
+ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
+brew cask install iterm2
+```
+
+   * Windows:
+Windows users should download and install Putty from [here](http://www.putty.org). The main package comes bundled with PuTTYGen, you will use it to generate your keys.
+
+Create your SSH keys:
+
+Mac / Linux:
+```
+ssh-keygen -t rsa
+
+Your identification has been saved in /Users/myname/.ssh/id_rsa.
+Your public key has been saved in /Users/myname/.ssh/id_rsa.pub.
+The key fingerprint is:
+ae:89:72:0b:85:da:5a:f4:7c:1f:c2:43:fd:c6:44:38 myname@mymac.local
+The key's randomart image is:
++--[ RSA 2048]----+
+|                 |
+|         .       |
+|        E .      |
+|   .   . o       |
+|  o . . S .      |
+| + + o . +       |
+|. + o = o +      |
+| o...o * o       |
+|.  oo.o .        |
++-----------------+
+```
+
+Windows: use PuTTYGen to generate your keys
+
+More info on setting up your keys: https://help.github.com/articles/connecting-to-github-with-ssh/
+
+7. SourceTree (optional)
+
 
 ## Validating pre-reqs:
 ```
