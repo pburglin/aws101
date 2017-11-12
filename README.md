@@ -270,19 +270,12 @@ Review each question presented by JHipster, follow the prompts with default valu
 
 ### Let's review what we have now:
 ```
-./mvnw clean test
-...
-[INFO] Analyzed bundle 'Bookmart' with 70 classes
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time: 01:04 min
-[INFO] Finished at: 2017-11-12T12:46:11-05:00
-[INFO] Final Memory: 54M/384M
-[INFO] ------------------------------------------------------------------------
-```
+git add .
+git status
+git commit -m "initial project commit"
 
-```
+atom .
+
 ./mvnw
 ...
 ----------------------------------------------------------
@@ -308,10 +301,6 @@ yarn start
 
 [Local Bookmart - With Hot Reload](http://localhost:9000)
 
-```
-cd /tmp/bookmart
-atom .
-```
 Let's make few changes to src/main/webapp/app/home/home.component.html and check out the browser tab
 
 ### Create the Author data entity:
@@ -389,7 +378,7 @@ From your workstation, do a local build and upload binary package to EC2 instanc
 
 ```
 # build the application binary:
-./mvnw package
+./mvnw package -Dmaven.test.skip=true
 
 ls -la target/*.war
 -rwxr--r--  1 pedroburglin  wheel  78564956 Nov 12 14:30 target/bookmart-0.0.1-SNAPSHOT.war
