@@ -127,6 +127,59 @@ jhipster --version
 4.10.2
 ```
 
+---
+
+# [TodoMVC](http://todomvc.com)
+What is it? A frontend-only ToDo app implemented with in most of the popular JavaScript frameworks of today.
+
+Let's deploy our own TodoMVC with S3 - look, no servers!
+
+```
+# create local copy of TodoMVC project
+cd /tmp
+git clone https://github.com/tastejs/todomvc.git
+
+# download all dependencies
+cd todomvc/examples/angular2
+npm install
+```
+
+Go to the [AWS console](https://console.aws.amazon.com) page
+In the top menu, click Services / S3
+Click "Create bucket", enter a unique DNS name (e.g. pburglin20171112) and click Create
+Open the new bucket
+Click Properties / Static website hosting select "Use this bucket to host a website"
+
+Click Permissions / Bucket policy, and enter the policy below (change the "pburglin20171112" to your bucket name):
+```
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "PublicReadGetObject",
+      "Action": "s3:GetObject",
+      "Effect": "Allow",
+      "Resource": "arn:aws:s3:::pburglin20171112/*",
+      "Principal": "*"
+    }
+  ]
+}
+```
+
+Now let's copy the static files over to our S3 bucket:
+```
+cd /tmp/todomvc
+aws s3 cp . s3://pburglin20171112/ --recursive
+```
+
+Once this is finished we should now be able to access static files hosted directly from our S3 bucket:
+
+https://s3.amazonaws.com/pburglin20171112/examples/angular2/index.html
+
+NOTE: hosting files directly from S3 buckets is fine for training. However, for real apps you should take a look at AWS CloudFront to serve static files, as it will be safer and give you better performance.
+
+---
+
 # AWS dashboard and EC2 instances
 
 Go to the [AWS console](https://console.aws.amazon.com) page
@@ -188,14 +241,7 @@ sudo apt-get install -y nginx
 sudo apt-get install -y openjdk-8-jdk
 ```
 
-NOTE: If everything worked properly, we should have 
-
----
-
-# [TodoMVC](http://todomvc.com)
-What is it? A frontend-only ToDo app implemented with in most of the popular JavaScript frameworks of today.
-
-Let's deploy our own TodoMVC with S3 - look, no servers!
+NOTE: If everything worked properly, we should have a Ubuntu server with Java and other dependencies ready to run our apps.
 
 ---
 
@@ -383,10 +429,14 @@ nohup java -jar bookmart-0.0.1-SNAPSHOT.war > nohup.out &
 # [AWS CodeStar](https://aws.amazon.com/codestar/)
 What is it? A unified user interface to quick-start and manage your software development activities in a single place.
 
+
+
+---
+
 # Want to learn more ?
 
 [A Cloud Guru AWS Certified Solutions Architect](https://acloud.guru/learn/aws-certified-solutions-architect-associate)
-   * Great exam preparation materials
+   * Great AWS certification exam preparation materials
 
 [Cloud Academy AWS Certified Solutions Architect](https://cloudacademy.com/learning-paths/solutions-architect-associate-certification-preparation-for-aws-14/)
-   * Good labs
+   * Great guided hands on labs, safely access AWS, Azure and Google through Cloud Academy without risk of additional charges
