@@ -427,9 +427,56 @@ nohup java -jar bookmart-0.0.1-SNAPSHOT.war > nohup.out &
 ---
 
 # [AWS CodeStar](https://aws.amazon.com/codestar/)
-What is it? A unified user interface to quick-start and manage your software development activities in a single place.
+What is it? A unified user interface to quick-start and manage your software development activities in a single place. Kickstart your project with integrated code repository, a CI/CD pipeline and more!
 
+In the AWS console, go to IAM / Users, and select your user
+Under Security Credentials setup:
+* SSH keys for AWS CodeCommit
+* HTTPS Git credentials for AWS CodeCommit
 
+Go to Service / CodeStar
+Click "Start a Project"
+Select the HTML 5 template
+Give it a unique project name. e.g. 20171112pburglin
+Click Next, then Create Project, make sure to select your key and go get a coffee - it might take a minute to prepare everything.
+
+What is a CI/CD pipeline?
+
+Under Application endpoints, try the URL
+
+New let's clone this repo and push some changes:
+* Click Connect tools
+* At the bottom, copy the Clone repository URL
+* Clone it as a local repository:
+```
+cd /tmp
+git clone https://git-codecommit.us-east-1.amazonaws.com/v1/repos/20171112pburglin
+```
+
+* Review the files we got from this template:
+```
+cd /tmp/20171112pburglin
+atom .
+
+appspec.yml <-- automate EC2 instance setup
+webpage	<-- app static files go here
+```
+
+* Replace the template files with our TodoMVC app:
+```
+rm -rf /tmp/20171112pburglin/webpage/*
+cp -r /tmp/todomvc/examples/angular2/* /tmp/20171112pburglin/webpage
+git add .
+git commit -m "added TodoMVC src code"
+git push
+```
+
+Now go back to the AWS CodeStart dashboard, look at the Continuous Deployment tile and confirm that about a minute after our commit we have a new build triggered automatically.
+
+Once the pipeline is finished, go to the Application endpoint URL and confirm we now have our TodoMVC app live.
+
+Open CodeDeploy, select our deployment then Edit
+Review available options for advanced deployment: B/G
 
 ---
 
