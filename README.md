@@ -234,11 +234,7 @@ NOTE: It might take couple minutes for the EC2 instance to startup completely.
 Let's install some dependencies in our EC2 instance:
 ```
 sudo apt-get update
-sudo apt-get install -y git
-sudo apt-get install -y nodejs
-sudo apt-get install -y npm
-sudo apt-get install -y nginx
-sudo apt-get install -y openjdk-8-jdk
+sudo apt-get install -y git nodejs npm nginx openjdk-8-jdk
 ```
 
 NOTE: If everything worked properly, we should have a Ubuntu server with Java and other dependencies ready to run our apps.
