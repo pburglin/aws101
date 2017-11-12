@@ -70,11 +70,36 @@ More info on setting up your keys: https://help.github.com/articles/connecting-t
 
 7. [Node](https://nodejs.org/en/) - the latest LTS is recommended here
 
+NOTE: On Macs you can install Node with Brew:
+
+```
+brew install node
+```
+
+8. Yarn and JHipster:
+
+NOTE: On Macs you can install Node with Brew:
+```
+brew install yarn
+yarn global add yo
+yarn global add generator-jhipster
+
+# make sure Yarn (and JHipster) gets included in your PATH:
+export PATH="$PATH:`yarn global bin`:$HOME/.config/yarn/global/node_modules/.bin"
+
+# get rid of git connectivity warnings when using JHipster
+git config --global url."https://".inteadOf git://
+```
+
 8. [SourceTree](https://www.sourcetreeapp.com) (optional):
 SourceTree is a graphical interface for Git. It is especialy helpful to visualize changes in filesets and repositories with multiple branches.
 
+NOTE: SourceTree is free. After its trial period, you can download a free license file here: my.atlassian.com
+
 ## Validating pre-reqs:
 ```
+# ~~dependency checks:~~
+
 aws --version
 aws-cli/1.11.97 Python/2.7.14 Darwin/17.2.0 botocore/1.5.60
 
@@ -89,6 +114,15 @@ v8.9.1
 
 npm -version
 5.5.1
+
+yarn --version
+0.18.2
+
+yo --version
+1.8.5
+
+jhipster --version
+4.10.2
 ```
 
 # [TodoMVC](http://todomvc.com)
@@ -99,31 +133,7 @@ Let's deploy our own TodoMVC with S3 - look, no servers!
 # [JHipster](http://www.jhipster.tech)
 What is it? A development platform to generate, develop and deploy Spring Boot + Angular Web applications and Spring microservices.
 
-Let's build our sample BookMart app locally, and review key aspects of the app.
-
-### Setup JHipster for the first time
-```
-brew install node
-brew install yarn
-yarn global add yo
-yarn global add generator-jhipster
-
-# make sure Yarn (and JHipster) gets included in your PATH:
-export PATH="$PATH:`yarn global bin`:$HOME/.config/yarn/global/node_modules/.bin"
-
-# ~~dependency checks:~~
-yarn --version
-0.18.2
-
-yo --version
-1.8.5
-
-jhipster --version
-4.10.2
-
-# get rid of git connectivity warnings when using JHipster
-git config --global url."https://".inteadOf git://
-```
+Let's build our sample BookMart app locally, and review key aspects of the app:
 
 ### Let's create our BookMart app
 
@@ -134,8 +144,74 @@ jhipster
 ```
 
 Review each question presented by JHipster, follow the prompts with default values and override only these options:
-1. Enable search and websockets;
-2. Pick English as the main language, Spanish as an additional language;
+1. Enable Search and WebSockets;
+2. Pick English as the app's main language, Spanish as an additional language;
+
+### Create local Git repository with initial project
+```
+git init
+git add .
+git status
+git config --global user.email "pedro.burglin@gmail.com"
+git config --global user.name "Pedro Burglin"
+git -m "initial commit of bookmart"
+```
+
+### Let's review what we have now:
+```
+./mvnw clean test
+
+./mvnw
+```
+
+[Local Bookmart](http://localhost:8080)
+
+### Hot reload
+```
+# on a 2nd terminal:
+yarn start
+```
+
+[Local Bookmart](http://localhost:9000)
+
+```
+cd /tmp/bookmart
+atom .
+```
+
+### Create Author data entity:
+
+```
+jhipster entity author
+```
+
+Create the following fields:
+* name
+ * Type: String
+ * Validation: Yes
+  * Select Required
+ * No DTO
+
+### Commit code changes to local Git repo
+```
+// review updates in SourceTree
+git add .
+git status
+git commit -m "Added Author entity"
+```
+
+### Create Book data entity:
+
+```
+jhipster entity book
+```
+
+Create the following fields:
+* title
+ * Type: String
+ * Validation: Yes
+  * Select Required
+ * No DTO
 
 
 ### Now let's deploy it in our AWS EC2 instance:
