@@ -66,9 +66,10 @@ The key's randomart image is:
 
 Windows: use PuTTYGen to generate your keys
 
-More info on setting up your keys: https://help.github.com/articles/connecting-to-github-with-ssh/
+More info on setting up your keys: https://help.github.com/articles/connecting-to-github-with-ssh/ and https://docs.joyent.com/public-cloud/getting-started/ssh-keys/generating-an-ssh-key-manually/manually-generating-your-ssh-key-in-mac-os-x
 
-7. SourceTree (optional)
+7. [SourceTree](https://www.sourcetreeapp.com) (optional):
+SourceTree is a graphical interface for Git. It is especialy helpful to visualize changes in filesets and repositories with multiple branches.
 
 
 ## Validating pre-reqs:
