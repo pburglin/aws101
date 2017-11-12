@@ -68,7 +68,9 @@ Windows: use PuTTYGen to generate your keys
 
 More info on setting up your keys: https://help.github.com/articles/connecting-to-github-with-ssh/ and https://docs.joyent.com/public-cloud/getting-started/ssh-keys/generating-an-ssh-key-manually/manually-generating-your-ssh-key-in-mac-os-x
 
-7. [SourceTree](https://www.sourcetreeapp.com) (optional):
+7. [Node](https://nodejs.org/en/) - the latest LTS is recommended here
+
+8. [SourceTree](https://www.sourcetreeapp.com) (optional):
 SourceTree is a graphical interface for Git. It is especialy helpful to visualize changes in filesets and repositories with multiple branches.
 
 ## Validating pre-reqs:
@@ -81,6 +83,12 @@ java version "1.8.0_45"
 
 git --version
 git version 2.13.6 (Apple Git-96)
+
+node --version
+v8.9.1
+
+npm -version
+5.5.1
 ```
 
 # [TodoMVC](http://todomvc.com)
@@ -93,9 +101,49 @@ What is it? A development platform to generate, develop and deploy Spring Boot +
 
 Let's build our sample BookMart app locally, and review key aspects of the app.
 
-Now let's deploy it in our AWS EC2 instance:
-Checkout from Git repo
-Upload package
+### Setup JHipster for the first time
+```
+brew install node
+brew install yarn
+yarn global add yo
+yarn global add generator-jhipster
+
+# make sure Yarn (and JHipster) gets included in your PATH:
+export PATH="$PATH:`yarn global bin`:$HOME/.config/yarn/global/node_modules/.bin"
+
+# ~~dependency checks:~~
+yarn --version
+0.18.2
+
+yo --version
+1.8.5
+
+jhipster --version
+4.10.2
+
+# get rid of git connectivity warnings when using JHipster
+git config --global url."https://".inteadOf git://
+```
+
+### Let's create our BookMart app
+
+```
+mkdir -p /tmp/bookmart
+cd /tmp/bookmart
+jhipster
+```
+
+Review each question presented by JHipster, follow the prompts with default values and override only these options:
+1. Enable search and websockets;
+2. Pick English as the main language, Spanish as an additional language;
+
+
+### Now let's deploy it in our AWS EC2 instance:
+Here we will explore two ways to deploy our app:
+
+#### From the EC2 instance, checkout from Git repo, build and run
+
+#### From your workstation, do a local build and upload binary package to EC2 instance
 
 
 # [AWS CodeStar](https://aws.amazon.com/codestar/)
