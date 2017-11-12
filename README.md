@@ -1,10 +1,12 @@
 # Description
 This course was designed to help learners get started with AWS. It includes detailed steps to setup their free tier AWS account, sample apps and have them deployed in AWS.
 
+I will include notes for Windows users, but these steps were developed and tested on a Mac. You should be able to translate these commands to Windows. For simplicity, I will use Atom as my editor of choice.
+
 # Pre-reqs
 
 1. Create a free AWS Account
-   * Go to the [AWS console](https://aws.amazon.com) page
+   * Go to the [AWS page](https://aws.amazon.com)
    * Get familiar with the details under "AWS Free Tier Details"
    * Click the "Create a Free Account" button and follow the forms to create your account
 
@@ -70,7 +72,7 @@ More info on setting up your keys: https://help.github.com/articles/connecting-t
 
 7. [Node](https://nodejs.org/en/) - the latest LTS is recommended here
 
-NOTE: On Macs you can install Node with Brew:
+NOTE: On Macs you can also install Node with Brew:
 
 ```
 brew install node
@@ -78,7 +80,7 @@ brew install node
 
 8. Yarn and JHipster:
 
-NOTE: On Macs you can install Node with Brew:
+NOTE: On Macs you can install Yarn and JHipster with Brew:
 ```
 brew install yarn
 yarn global add yo
@@ -125,10 +127,36 @@ jhipster --version
 4.10.2
 ```
 
+# AWS dashboard and EC2 instances
+
+Go to the [AWS console](https://console.aws.amazon.com) page
+
+In the top menu, click Services / EC2
+In the top right, confirm you have selected the "N. Virginia" region
+Click "Launch Instance"
+Pick the latest Amazon Linux AMI
+Click the "Next" buttons, and review each screen - do not change anything
+Under "Configure Security Group": keep the default rule for SSH and add new rules for HTTP and HTTPS
+If this is your first time, you will need to setup keys with AWS
+
+```
+pedroburglin$ ssh -i ~/.ssh/id_rsa ec2-user@52.201.205.213
+Last login: Sun Nov 12 19:01:09 2017 from 72.83.64.233
+
+       __|  __|_  )
+       _|  (     /   Amazon Linux AMI
+      ___|\___|___|
+
+https://aws.amazon.com/amazon-linux-ami/2017.09-release-notes/
+[ec2-user@ip-172-31-76-59 ~]$
+```
+
+
 # [TodoMVC](http://todomvc.com)
 What is it? A frontend-only ToDo app implemented with in most of the popular JavaScript frameworks of today.
 
 Let's deploy our own TodoMVC with S3 - look, no servers!
+
 
 # [JHipster](http://www.jhipster.tech)
 What is it? A development platform to generate, develop and deploy Spring Boot + Angular Web applications and Spring microservices.
@@ -185,8 +213,8 @@ Review each question presented by JHipster, follow the prompts with default valu
 [Local Bookmart - Without Hot Reload](http://localhost:8080)
 
 * Sample user accounts:
-admin/admin
-user/user
+  * admin/admin
+  * user/user
 
 ### Hot reload
 ```
@@ -203,23 +231,24 @@ atom .
 ```
 Let's make few changes to src/main/webapp/app/home/home.component.html and check out the browser tab
 
-### Create Author data entity:
+### Create the Author data entity:
 
 ```
 jhipster entity author
 ```
 
-Create the following fields:
-* name
- * Type: String
- * Validation: Yes
-  * Select Required
- * No relationship
- * No DTO
- * No separate service class
- * Yes, with infinite scroll
+Create this new entity with the following fields:
+* author:
+  * Field name: name
+    * Type: String
+    * Validation: Yes
+      * Check Required
+  * No entity relationship
+  * DTO: No DTO, use the entity directly
+  * Service class: No separate service class
+  * Pagination: Yes, with infinite scroll
 
-### Commit code changes to local Git repo
+#### Commit code changes to local Git repo
 ```
 // review updates in SourceTree
 git add .
@@ -227,19 +256,39 @@ git status
 git commit -m "Added Author entity"
 ```
 
-### Create Book data entity:
+### Create the Book data entity:
 
 ```
 jhipster entity book
 ```
 
-Create the following fields:
-* title
- * Type: String
- * Validation: Yes
-  * Select Required
- * No DTO
+Create the entity with the following fields:
+* book:
+  * title
+    * Type: String
+    * Validation: Yes
+      * Check Required
+  * price
+    * Type: BigDecimal
+    * Validation: Yes
+      * Check Required
+  * Yes to Add a relationship to another entity:
+    * Other entity = author
+    * Relationship name = author
+    * Relationship type = many to one	<-- simplified use case, books can only have 1 author
+    * When displaying the relationship, display = name
+    * Relationship validation = Yes, Required    
+  * DTO: No DTO, use the entity directly
+  * Service class: No separate service class
+  * Pagination: Yes, with infinite scroll
 
+#### Commit code changes to local Git repo
+```
+// review updates in SourceTree
+git add .
+git status
+git commit -m "Added Book entity"
+```
 
 ### Now let's deploy it in our AWS EC2 instance:
 Here we will explore two ways to deploy our app:
