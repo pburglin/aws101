@@ -284,11 +284,14 @@ Review each question presented by JHipster, follow the prompts with default valu
 
 ### Let's review what we have now:
 ```
+# JHipster is able to create the project files quickly, but Yarn will take a while to download all the dependencies
+# Now it is a good time to review the project src code while all the downloads take place
+atom .
+
+# let's commit the project source code to our repo for the first time
 git add .
 git status
 git commit -m "initial project commit"
-
-atom .
 
 ./mvnw
 ...
