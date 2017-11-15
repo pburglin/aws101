@@ -402,7 +402,7 @@ ls -la target/*.war
 ```
 
 ```
-# upload and start the app from our EC2 instance:
+# upload and start the app from our EC2 instance (remember to replace 34.227.26.150 with your EC2 instance's IP address):
 scp -i ~/.ssh/id_rsa target/bookmart-0.0.1-SNAPSHOT.war ubuntu@34.227.26.150:~/
 
 ssh -i ~/.ssh/id_rsa ubuntu@34.227.26.150
@@ -419,7 +419,9 @@ java -jar bookmart-0.0.1-SNAPSHOT.war
 
 Now let's try our Bookmart app running from AWS: in your browser go to http://34.227.26.150:8080/ or http://ec2-34-227-26-150.compute-1.amazonaws.com:8080/
 
-If everything worked properly you should see Bookmart's login page!
+NOTE: remember to replace the IP address and the DNS name with those of your EC2 instance.
+
+If everything worked properly you should see your very own Bookmart's login page!
 
 NOTE: If you want the app to continue running after you close the SSH terminal, you can start it with this command below:
 ```
