@@ -173,9 +173,15 @@ aws s3 cp /tmp/todomvc/examples/angular2/ s3://pburglin20171112/ --recursive
 
 Once this is finished we should now be able to access static files hosted directly from our S3 bucket:
 
-https://s3.amazonaws.com/pburglin20171112/examples/angular2/index.html
+* In the S3 web console, go to the Overview tab and refresh the screen
+* You should now see the TodoMVC source code, including file index.html
+* Click on index.html, and you should see a link like the one below:
 
-NOTE: hosting files directly from S3 buckets is fine for training. However, for real apps you should take a look at AWS CloudFront to serve static files, as it will be safer and give you better performance.
+https://s3.amazonaws.com/pburglin20171114/index.html
+
+Let's give it a try - you should see your own instance of TodoMVC hosted from your S3 bucket. You can now make changes to your local source code, and upload it to S3 to publish it.
+
+NOTE: hosting files directly from your S3 buckets is fine for training. However, for real apps you should take a look at AWS CloudFront to serve static files, as it will be safer and give you better performance.
 
 ---
 
