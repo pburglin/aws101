@@ -245,7 +245,13 @@ sudo apt-get update
 sudo apt-get install -y git nodejs npm nginx openjdk-8-jdk
 ```
 
-NOTE: If everything worked properly, we should have a Ubuntu server with Java and other dependencies ready to run our apps.
+NOTE: If everything worked properly, we should have a Ubuntu server with Java and other dependencies ready to run our apps. You can validate it by running the command below:
+```
+$ java -version
+openjdk version "1.8.0_151"
+OpenJDK Runtime Environment (build 1.8.0_151-8u151-b12-0ubuntu0.16.04.2-b12)
+OpenJDK 64-Bit Server VM (build 25.151-b12, mixed mode)
+```
 
 ---
 
