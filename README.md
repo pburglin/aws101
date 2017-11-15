@@ -140,7 +140,7 @@ cd /tmp
 git clone https://github.com/tastejs/todomvc.git
 
 # download all dependencies
-cd todomvc/examples/angular2
+cd /tmp/todomvc/examples/angular2
 npm install
 ```
 
@@ -150,7 +150,7 @@ npm install
 * Open the new bucket
 * Click Properties / Static website hosting and select "Use this bucket to host a website"
 
-* Click Permissions / Bucket policy, and enter the policy below (change the "pburglin20171112" to your bucket name):
+* Click Permissions / Bucket policy, and enter the policy below (change the reference to "pburglin20171112" to match your bucket name):
 ```
 {
   "Version": "2012-10-17",
@@ -166,10 +166,9 @@ npm install
 }
 ```
 
-Now let's copy the static files over to our S3 bucket:
+Now let's copy the static files over to our S3 bucket (again, remember to change the bucket name to match the one you created earlier):
 ```
-cd /tmp/todomvc/examples/angular2
-aws s3 cp . s3://pburglin20171112/ --recursive
+aws s3 cp /tmp/todomvc/examples/angular2/ s3://pburglin20171112/ --recursive
 ```
 
 Once this is finished we should now be able to access static files hosted directly from our S3 bucket:
@@ -184,13 +183,14 @@ NOTE: hosting files directly from S3 buckets is fine for training. However, for 
 
 Go to the [AWS console](https://console.aws.amazon.com) page
 
-In the top menu, click Services / EC2
-In the top right, confirm you have selected the "N. Virginia" region
-Click "Launch Instance"
-Pick the latest Ubuntu Server 16.04 Linux AMI
-Click the "Next" buttons, and review each screen - do not change anything
-Under "Configure Security Group": keep the default rule for SSH and add new rules for HTTP and HTTPS
-If this is your first time creating EC2 instances, you will need to setup keys with AWS - just upload the public key (~/.ssh/id_rsa.pub) you created earlier.
+* In the top menu, click Services / EC2
+* In the top right, confirm you have selected the "N. Virginia" region
+* Click "Launch Instance"
+* Pick the latest Ubuntu Server 16.04 Linux AMI
+* Click the "Next" buttons, and review each screen - do not change anything
+* Under "Configure Security Group": keep the default rule for SSH and add new rules for HTTP and HTTPS
+
+NOTE: At this point, if this is your first time creating EC2 instances, you will need to setup keys with AWS - just upload the public key (~/.ssh/id_rsa.pub) you created earlier.
 
 As the EC2 instance starts up, in the EC2 Instances screen, with the new instance selected, take note of these 2 fields:
 * Public DNS (IPv4) - on my case, it was ec2-34-227-26-150.compute-1.amazonaws.com
