@@ -177,7 +177,7 @@ Once this is finished we should now be able to access static files hosted direct
 * You should now see the TodoMVC source code, including file index.html
 * Click on index.html, and you should see a link like the one below:
 
-https://s3.amazonaws.com/pburglin20171114/index.html
+https://s3.amazonaws.com/pburglin20171112/index.html
 
 Let's give it a try - you should see your own instance of TodoMVC hosted from your S3 bucket. You can now make changes to your local source code, and upload it to S3 to publish it.
 
