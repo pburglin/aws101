@@ -376,7 +376,6 @@ Create the entity with the following fields:
 
 #### Commit code changes to local Git repo
 ```
-// review updates in SourceTree
 git add .
 git status
 git commit -m "Added Book entity"
