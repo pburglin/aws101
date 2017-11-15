@@ -144,13 +144,13 @@ cd todomvc/examples/angular2
 npm install
 ```
 
-Go to the [AWS console](https://console.aws.amazon.com) page
-In the top menu, click Services / S3
-Click "Create bucket", enter a unique DNS name (e.g. pburglin20171112) and click Create
-Open the new bucket
-Click Properties / Static website hosting select "Use this bucket to host a website"
+* Go to the [AWS console](https://console.aws.amazon.com) page
+* In the top menu, click Services / S3
+* Click "Create bucket", enter a unique DNS name (e.g. *pburglin20171112*) and click "Create"
+* Open the new bucket
+* Click Properties / Static website hosting and select "Use this bucket to host a website"
 
-Click Permissions / Bucket policy, and enter the policy below (change the "pburglin20171112" to your bucket name):
+* Click Permissions / Bucket policy, and enter the policy below (change the "pburglin20171112" to your bucket name):
 ```
 {
   "Version": "2012-10-17",
