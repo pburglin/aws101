@@ -266,7 +266,7 @@ Let's build our sample BookMart app locally, and review key aspects of the app:
 mkdir -p /tmp/bookmart
 cd /tmp/bookmart
 
-# Create local Git repository with initial project
+# Initialize local Git repository
 git init
 git add .
 git status
@@ -339,13 +339,14 @@ Create this new entity with the following fields:
 
 #### Commit code changes to local Git repo
 ```
-// review updates in SourceTree
 git add .
 git status
 git commit -m "Added Author entity"
 ```
 
 ### Review code changes with SourceTree
+
+NOTE: Change review in SourceTree can help you learn what JHipster is doing behind the scenes, and how you can use key components like Liquibase and internationalization.
 
 ### Create the Book data entity:
 
