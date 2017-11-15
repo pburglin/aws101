@@ -127,6 +127,8 @@ jhipster --version
 4.10.2
 ```
 
+NOTE: It should be okay if any of your tools have a higher version number than the ones listed above. However, please note that the steps below were tested with this specific combination, and newer versions might require different steps to complete the exercises in this page.
+
 ---
 
 # [TodoMVC](http://todomvc.com)
