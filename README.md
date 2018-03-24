@@ -196,7 +196,7 @@ Go to the [AWS console](https://console.aws.amazon.com) page
 * Click "Launch Instance"
 * Pick the latest Ubuntu Server 16.04 Linux AMI
 * Click the "Next" buttons, and review each screen - do not change anything
-* Under "Configure Security Group": keep the default rule for SSH and add new rules for HTTP and HTTPS
+* Under "Configure Security Group": keep the default rule for SSH, add new rules for HTTP and HTTPS, and a custom rule for port 8080
 
 NOTE: At this point, if this is your first time creating EC2 instances, you will need to setup keys with AWS - just upload the public key (~/.ssh/id_rsa.pub) you created earlier.
 
